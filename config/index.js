@@ -1,13 +1,25 @@
 'use strict';
 
 // Dependencies
-const Confidence = require('confidence');
-const Path = require('path');
+    const Confidence = require('confidence');
+    const Path = require('path');
+
+// Plugins
+    const RouterPG = require('../plugins/router');
+    const DatabasePG = require('../plugins/databse');
 
 const internals = {
     defaults: {
         env: process.env.NODE_ENV || 'dev'
     },
+    mongo: {
+        uri: 'mongodb+srv://acklenuser:acklenuser@acklen-qxhpw.mongodb.net/acklexpenses?retryWrites=true&w=majority',
+        dbName: 'acklexpenses',
+        mongoOptions: {
+            user: 'acklen',
+            pass: 'acklen'
+        }
+    }
 };
 
 internals.config = {
@@ -17,6 +29,12 @@ internals.config = {
         server: {
             port: 3000,
             host: 'localhost',
+        },
+        register: {
+            plugins: [
+                { plugin: RouterPG, options: { root: Path.resolve(__dirname, '../') } },
+                { plugin: DatabasePG, options: internals.mongo }
+            ]
         }
     },
     options: {
@@ -27,8 +45,8 @@ internals.config = {
 internals.store = new Confidence.Store(internals.config);
 
 // Exposing
-exports.get = (key, opts = {}) => {
-    const criteria = Object.assign({}, internals.defaults, opts);
+    exports.get = (key, opts = {}) => {
+        const criteria = Object.assign({}, internals.defaults, opts);
 
-    return internals.store.get(key, criteria);
-};
+        return internals.store.get(key, criteria);
+    };

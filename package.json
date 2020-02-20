@@ -21,6 +21,9 @@
     "@hapi/hapi": "^19.1.1",
     "@hapi/hoek": "^9.0.3",
     "@hapi/joi": "^17.1.0",
-    "confidence": "^4.0.2"
+    "confidence": "^4.0.2",
+    "jsend": "^1.1.0",
+    "moment": "^2.24.0",
+    "mongoose": "^5.9.1"
   }
 }

@@ -1,8 +1,8 @@
 'use strict';
 
 // Dependencies
-const Glue = require('@hapi/glue');
-const Config = require('./config');
+    const Glue = require('@hapi/glue');
+    const Config = require('./config');
 
 const internals = {};
 
