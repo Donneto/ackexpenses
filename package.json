@@ -1,0 +1,26 @@
+{
+  "name": "ackexpenses",
+  "version": "1.0.0",
+  "description": "Acklen Avenue Codong Excercise",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Donneto/ackexpenses.git"
+  },
+  "author": "https://github.com/Donneto",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Donneto/ackexpenses/issues"
+  },
+  "homepage": "https://github.com/Donneto/ackexpenses#readme",
+  "dependencies": {
+    "@hapi/glue": "^7.0.0",
+    "@hapi/hapi": "^19.1.1",
+    "@hapi/hoek": "^9.0.3",
+    "@hapi/joi": "^17.1.0",
+    "confidence": "^4.0.2"
+  }
+}
