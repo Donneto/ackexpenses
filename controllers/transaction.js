@@ -35,19 +35,19 @@
 
     internals.create =  async (request, h) => {
         const data = request.payload;
+        let transaction;
+        let doc;
 
         try {
 
-            const transaction = new transactionCollection(data);
-            const doc = await transaction.save();
+            transaction = new transactionCollection(data);
+            doc = await transaction.save();
             
             return jsend.success(doc);
 
         } catch(e) {
             throw e;
         }
-        
-        
     };
 
     internals.update =  async (request, h) => {
@@ -76,7 +76,22 @@
     };
 
     internals.delete = async (request, h) => {
-        
+        const id = request.params.id || null;
+        let result;
+
+        try {
+
+            if (id === null) {
+                return jsend.error('ID must not be null');
+            }
+
+            result = await transactionCollection.deleteOne( { _id: id });
+            
+            return jsend.success(result);
+
+        } catch (e) {
+            throw e;
+        }
     };
 
 // Exposing
