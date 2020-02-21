@@ -6,7 +6,7 @@
 
 // Plugins
     const RouterPG = require('../plugins/router');
-    const DatabasePG = require('../plugins/databse');
+    const DatabasePG = require('../plugins/database');
 
 const internals = {
     defaults: {
