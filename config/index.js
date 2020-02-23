@@ -34,7 +34,7 @@ internals.config = {
             },
             host: {
                 $filter: 'env',
-                production: '127.0.0.1',
+                production: '0.0.0.0',
                 $default: 'localhost'
             },
             routes: {
