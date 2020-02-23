@@ -1,3 +1,5 @@
+'use strict';
+
 // Dependencies
     const Mongoose = require('mongoose');
     const Schema = Mongoose.Schema;
@@ -7,7 +9,8 @@ const transactionSchema = new Schema({
     date: Date,
     type: String,
     category: String,
-    amount: Number
+    amount: Number,
+    date_created: { type: Date, default: moment.utc()}
 });
 
 // Exposing

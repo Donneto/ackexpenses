@@ -12,8 +12,13 @@
     internals.getFrom = async (request, h) =>  {
         const startDate = request.params.startDate;
         let endDate = request.params.endDate;
-        let data;
+        let docs;
         let query;
+        let data = {
+            income: 0,
+            expense: 0,
+            docs: []
+        };
 
         try {
             // Validations
@@ -24,12 +29,34 @@
             // If same day change query
             query = startDate === endDate ? { date: startDate } : { date: { $gte: startDate, $lte: endDate } };
 
-            data = await transactionCollection.find(query);
+            docs = await transactionCollection.find(query).sort({ date: 1 });
+
+            if (docs.length) {
+                // Build Up Response
+                data.income = docs.filter( item => item.type === 'income');
+                data.expense = docs.filter( item => item.type === 'expense');
+
+                if (data.income.length) {
+                    data.income = data.income.reduce( (acum, item) => acum + item.amount, 0);
+                } else {
+                    data.income = 0;
+                }
+
+                if (data.expense.length) {
+                    data.expense = data.expense.reduce( (acum, item) => acum + item.amount, 0);
+                } else {
+                    data.expense = 0;
+                }
+
+                data.docs = docs;
+            }
+            
+            console.log(data);
             
             return jsend.success(data);
 
         } catch(e) {
-            throw e;
+            return jsend.error('Something went wrong!');
         }
     };
 
@@ -46,7 +73,7 @@
             return jsend.success(doc);
 
         } catch(e) {
-            throw e;
+            return jsend.error('Something went wrong!');
         }
     };
 
@@ -71,7 +98,7 @@
             return jsend.success(transaction);
 
         } catch(e) {
-            throw e;
+            return jsend.error('Something went wrong!');
         }    
     };
 
@@ -90,7 +117,7 @@
             return jsend.success(result);
 
         } catch (e) {
-            throw e;
+            return jsend.error('Something went wrong!');
         }
     };
 
