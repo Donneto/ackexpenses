@@ -29,8 +29,8 @@ internals.config = {
         server: {
             port: {
                 $filter: 'env',
-                production: 8080,
-                $default: process.env.PORT
+                production: process.env.PORT,
+                $default: 3000
             },
             host: {
                 $filter: 'env',
