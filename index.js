@@ -14,7 +14,7 @@ internals.init = async () => {
 
         await Server.start();
         
-        console.log(`Server running at: ${Server.info.uri}`);
+        console.log(`Server running at: ${Server.info.uri} on env: ${Config.get('/env')}`);
         
         // Catch and error
         process.on('unhandledRejection', (err) => {

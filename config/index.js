@@ -27,8 +27,16 @@ internals.config = {
     env: internals.defaults.env,
     manifest: {
         server: {
-            port: process.env.PORT || 3000,
-            host: 'localhost',
+            port: {
+                $filter: 'env',
+                prd: 8080,
+                $default: process.env.PORT
+            },
+            host: {
+                $filter: 'env',
+                prd: '127.0.0.1',
+                $default: 'localhost'
+            },
             routes: {
                 cors: true
             }
