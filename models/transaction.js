@@ -1,6 +1,7 @@
 'use strict';
 
 // Dependencies
+    const moment = require('moment');
     const Mongoose = require('mongoose');
     const Schema = Mongoose.Schema;
 
