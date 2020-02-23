@@ -55,7 +55,7 @@ internals.config = {
 
 internals.store = new Confidence.Store(internals.config);
 
-// Exposing
+// Exposing things
     exports.get = (key, opts = {}) => {
         const criteria = Object.assign({}, internals.defaults, opts);
 
