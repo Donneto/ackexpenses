@@ -29,12 +29,12 @@ internals.config = {
         server: {
             port: {
                 $filter: 'env',
-                prd: 8080,
+                production: 8080,
                 $default: process.env.PORT
             },
             host: {
                 $filter: 'env',
-                prd: '127.0.0.1',
+                production: '127.0.0.1',
                 $default: 'localhost'
             },
             routes: {
